@@ -9,6 +9,9 @@ A dynamic block for manually selecting posts to show on the page.
 4. Search for post titles to add them to the frontend.
 
 == Deveploment ==
-Installation: ```npm install````
-Development: ```npm run start````
-Production build: ```npm run build```
+Installation:
+`npm install`
+Development:
+`npm run start`
+Production build:
+`npm run build`
