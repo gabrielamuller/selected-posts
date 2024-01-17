@@ -35,17 +35,20 @@ import './editor.scss';
  */
 export default function Edit( { attributes: { postList }, setAttributes} ) {
 
+  	// Get block properties to be applied to the block wrapper element.
 	const blockProps = useBlockProps();
 
-	// Get posts 
+	// Get posts using the useEntityRecords hook.
 	const postRequest = useEntityRecords( 'postType', 'post');
 
+	// If posts are still resolving, display a loading message.
 	if ( postRequest.isResolving ) {
 		return (
 			<div { ...blockProps}>Loading...</div>
 		)
 	}
 
+  	// Create an array of post titles to display in the FormTokenField.
 	const displayList = postRequest?.records
 		?.filter( ( item ) => postList?.includes( item.id ) )
 		.map( ( item ) => item.title.rendered );
@@ -54,10 +57,10 @@ export default function Edit( { attributes: { postList }, setAttributes} ) {
 		<div 
 			{ ...blockProps }
 		>
-       <BlockControls>
-          <AlignmentToolbar
-            onChange={(newVal) => setAttributes({alignment: newVal})} />
-        </BlockControls>
+			<BlockControls>
+				<AlignmentToolbar
+					onChange={(newVal) => setAttributes({alignment: newVal})} />
+			</BlockControls>
 			<FormTokenField
 				value={ displayList }
 				suggestions={ postRequest?.records?.map( ( post ) => post.title.rendered
